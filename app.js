@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+require('dotenv').config()
 
 const app = express();
 
@@ -35,6 +36,6 @@ app.get("/hi", (req, res) => {
     throw new Error("Hello error!")
   })
 
-app.listen(4000, () => {
+app.listen(process.env.PORT , () => {
   console.log("listening for requests on port 4000");
 });
