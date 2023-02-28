@@ -22,6 +22,19 @@ app.get("/", (req, res) => {
   ]);
 });
 
+app.get("/hi", (req, res) => {
+    res.json([
+      {
+        id: "1",
+        title: "Hello"
+      }
+    ]);
+  });
+
+  app.get('/err', (req, res) => {
+    throw new Error("Hello error!")
+  })
+
 app.listen(4000, () => {
   console.log("listening for requests on port 4000");
 });
