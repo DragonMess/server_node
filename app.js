@@ -1,8 +1,16 @@
+require("newrelic");
+
+require("newrelic");
+
 const express = require("express");
 const cors = require("cors");
 require('dotenv').config()
 
 const app = express();
+
+const pino = require('pino-http')()
+
+app.use(pino)
 
 app.use(cors());
 
@@ -34,6 +42,17 @@ app.get("/hi", (req, res) => {
 
   app.get('/err', (req, res) => {
     throw new Error("Hello error!")
+  })
+
+  app.get('/wait', (req, res, next) => {
+    setTimeout(() => {
+        try {
+            console.log("Async code example.")
+            throw new Error("Hello Error!")
+        } catch (error) { // manually catching
+            next(error) // passing to default middleware error handler
+        }
+    }, 10000)
   })
 
 app.listen(process.env.PORT , () => {
