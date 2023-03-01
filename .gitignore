@@ -2,3 +2,9 @@ node_modules/
 # dotenv environment variables file
 .env
 .env.test
+
+.log
+newrelic_agent.log
+
+# ignore all logs
+*.log
