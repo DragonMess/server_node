@@ -13,11 +13,7 @@ app.use(pino)
 app.use(cors());
 
 app.get("/", (req, res) => {
-  newrelic.addCustomAttributes({
-    NEW_RELIC_METADATA_RELEASE_TAG:'v0.1.209',
-    "Discount Code": "Summer Super Sale",
-    "Item Code": 31456
-  });
+
   res.json([
     {
       id: "1",
