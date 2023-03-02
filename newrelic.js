@@ -9,12 +9,14 @@ require('dotenv').config()
 exports.config = {
   /**
    * Array of application names.
+   * app_name: ['ServerNode'],
    */
-  app_name: ['ServerNode'],
+  
   /**
    * Your New Relic license key.
+   * license_key: process.env.NR_KEY,
    */
-  license_key: process.env.NR_KEY,
+  
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
@@ -30,7 +32,6 @@ exports.config = {
    */
   allow_all_headers: true,
   attributes: {
-    NEW_RELIC_METADATA_RELEASE_TAG:'v0.1.209',
     /**
      * Prefix of attributes to exclude from all destinations. Allows * as wildcard
      * at end.
