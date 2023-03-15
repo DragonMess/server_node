@@ -1,6 +1,5 @@
 name: Change Tracking Marker
 on:
-  workflow_dispatch:
   - release
       types: [published]
 
