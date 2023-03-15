@@ -40,7 +40,7 @@ app.get("/hi", (req, res) => {
   });
 
   app.get('/err', (req, res) => {
-    throw new Error("Hello error!")
+    throw new Error("🤬 error 👻")
   })
 
   app.get('/wait', (req, res, next) => {
