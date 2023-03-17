@@ -19,5 +19,5 @@ jobs:
           apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
           guid: ${{ secrets.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
           version: "${{ env.GITHUB_SHA_SHORT }}"
-          user: "${{ github.release }}"
+          user: "${{ github.tagName }}"
           description: ${{ github.event.head_commit.message }}
