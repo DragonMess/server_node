@@ -9,14 +9,18 @@ jobs:
     name: New Relic
     steps:
       # This step builds a var with the release tag value to use later
-      - name: Set Release Version from Tag
-        run: echo "RELEASE_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+      - name: Branch name
+        id: branch_name
+        run: |
+          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
+          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
       # This step creates a new Change Tracking Marker
       - name: New Relic Application Deployment Marker
         uses: newrelic/deployment-marker-action@v2.3.0
         with:
           apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
           guid: ${{ secrets.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
-          version: "${{ env.RELEASE_VERSION }}"
+          version: ${{ steps.branch_name.outputs.SOURCE_TAG }}
           user: "${{ github.repository }}"
           description: ${{ github.event.head_commit.message }}
