@@ -11,13 +11,13 @@ jobs:
       # This step builds a var with the release tag value to use later
       - uses: actions/checkout@v2
       - name: Set Release Version from Tag
-        run: echo "GITHUB_SHA_SHORT=${{ github.sh }}" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
       # This step creates a new Change Tracking Marker
       - name: New Relic Application Deployment Marker
         uses: newrelic/deployment-marker-action@v2.1.0
         with:
           apiKey: ${{ secrets.NEW_RELIC_API_KEY }}
           guid: ${{ secrets.NEW_RELIC_DEPLOYMENT_ENTITY_GUID }}
-          version: "${{ env.GITHUB_SHA_SHORT }}"
-          user: "${{ github.tagName }}"
+          version: "${{ env.RELEASE_VERSION }}"
+          user: "${{ github.sh }}"
           description: ${{ github.event.head_commit.message }}
