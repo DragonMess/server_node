@@ -11,7 +11,7 @@ jobs:
       # This step builds a var with the release tag value to use later
       - uses: actions/checkout@v2
       - name: Set Release Version from Tag
-        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SH" >> $GITHUB_ENV
+        run: echo "GITHUB_SHA_SHORT=$(echo $git_update.sh" >> $GITHUB_ENV
       # This step creates a new Change Tracking Marker
       - name: New Relic Application Deployment Marker
         uses: newrelic/deployment-marker-action@v2.1.0
